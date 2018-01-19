@@ -1,0 +1,37 @@
+{
+  "author": {
+    "name": "DBMmods"
+  },
+  "bugs": {
+    "url": "https://github.com/Discord-Bot-Maker-Mods/DBM-Mods/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "discord.js": "^11.3.0",
+    "ncp": "^2.0.0",
+    "request": "^2.83.0",
+    "valid-url": "^1.0.9"
+  },
+  "deprecated": false,
+  "description": "A free open source modification collection for Discord Bot Maker.",
+  "homepage": "http://dbm-mods.xyz/",
+  "keywords": [
+    "DBM",
+    "Discord",
+    "Bot",
+    "Maker"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "dbmmods",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Discord-Bot-Maker-Mods/DBM-Mods.git"
+  },
+  "scripts": {
+    "install": "node scripts/install.js",
+    "test": "scripts/test.js"
+  },
+  "version": "1.0.7"
+}
