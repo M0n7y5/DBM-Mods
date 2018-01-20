@@ -34,5 +34,5 @@
     "install": "node scripts/install.js",
     "test": "scripts/test.js"
   },
-  "version": "1.0.7"
+  "version": "1.0.8"
 }
