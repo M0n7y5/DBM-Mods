@@ -8,6 +8,7 @@
 /.eslintignore
 /.flowconfig
 /.gitattributes
+/.git
 /.github/
 /.npmignore
 /appveyor.yml

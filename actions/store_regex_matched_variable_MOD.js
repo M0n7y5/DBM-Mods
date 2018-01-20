@@ -28,6 +28,27 @@ module.exports = {
         },
 
         //---------------------------------------------------------------------
+        	 // DBM Mods Manager Variables (Optional but nice to have!)
+        	 //
+        	 // These are variables that DBM Mods Manager uses to show information
+        	 // about the mods for people to see in the list.
+        	 //---------------------------------------------------------------------
+
+        	 // Who made the mod (If not set, defaults to "DBM Mods")
+        	 author: "General Wrex",
+
+        	 // The version of the mod (Defaults to 1.0.0)
+        	 version: "1.8.2",
+
+        	 // A short description to show on the mod line for this mod (Must be on a single line)
+        	 short_description: "INSERT DESCRIPTION HERE",
+
+        	 // If it depends on any other mods by name, ex: WrexMODS if the mod uses something from WrexMods
+        	 depends_on_mods: ["WrexMODS"],
+
+        	 //---------------------------------------------------------------------
+
+        //---------------------------------------------------------------------
         // Action Storage Function
         //
         // Stores the relevant variable info for the editor.
@@ -67,56 +88,58 @@ module.exports = {
 
         html: function(isEvent, data) {
             return `
+            <div id ="wrexdiv" style="width: 550px; height: 350px; overflow-y: scroll;">
             <div>
-          		<p>
-          			<u>Mod Info:</u><br>
-          			Created by General Wrex!
-          		</p>
-          	</div>
-            <div>
-            <div style="float: left; width: 95%;">
-               End Behavior:<br>
-               <select id="behavior" class="round">
-                  <option value="0" selected>Call Next Action Automatically</option>
-                  <option value="1">Do Not Call Next Action</option>
-               </select>
+               <p>
+                  <u>Mod Info:</u><br>
+                  Created by General Wrex!<br>
+               </p>
             </div>
             <div>
-               <br>
-               <div style="float: left; width: 30%;">
-                  Input Variable:<br>
-                  <select id="inputStorage" class="round" onchange="glob.variableChange(this, 'inputVarNameContainer')">
-                  ${data.variables[1]}
+               <div style="float: left; width: 95%;">
+                  End Behavior:<br>
+                  <select id="behavior" class="round">
+                     <option value="0" selected>Call Next Action Automatically</option>
+                     <option value="1">Do Not Call Next Action</option>
                   </select>
+                  <br>
                </div>
-               <div id="inputVarNameContainer" style="display: ; float: right; width: 60%;">
-                  Input Variable Name:<br>
-                  <input id="inputVarName" class="round" type="text">
+               <div>
+                  <div style="float: left; width: 30%;">
+                     Input Variable:<br>
+                     <select id="inputStorage" class="round" onchange="glob.variableChange(this, 'inputVarNameContainer')">
+                     ${data.variables[1]}
+                     </select>
+                  </div>
+                  <div id="inputVarNameContainer" style="display: ; float: right; width: 60%;">
+                     Input Variable Name:<br>
+                     <input id="inputVarName" class="round" type="text">
+                  </div>
                </div>
-            </div>
-            <div>
-               <div style="float: left; width: 25%;">
-                  Type:<br>
-                  <select id="theType" class="round" onchange="glob.variableChange(this, 'typeContainer')">
-                     <option value="0" selected>Regex Match</option>
-                     <option value="1" selected>Regex Replace</option>
-                  </select>
+               <div>
+                  <div style="float: left; width: 30%;">
+                     <br>Type:<br>
+                     <select id="theType" class="round">
+                        <option value="0" selected>Regex Match</option>
+                        <option value="1" >Regex Replace</option>
+                     </select>
+                  </div>
+                  <div id="typeContainer" style="display: ; float: right; width: 60%;">
+                     <br>Match: (Regex Builder)<a href="http://buildregex.com/" target="_blank">http://buildregex.com/</a>)
+                     <input id="typeVariable" class="round" type="text">
+                  </div>
                </div>
-               <div id="typeContainer" style="display: ; float: right; width: 70%;">
-                  Match: (Regex Builder)<a href="http://buildregex.com/" target="_blank">http://buildregex.com/</a>)
-                  <input id="typeVariable" class="round" type="text">
-               </div>
-            </div>
-            <div>
-               <div style="float: left; width: 30%;"><br><br>
-                  Store In:<br>
-                  <select id="storage" class="round" onchange="glob.variableChange(this, 'varNameContainer')">
-                  ${data.variables[1]}
-                  </select>
-               </div>
-               <div id="varNameContainer" style="display: ; float: right; width: 60%;"><br><br>
-                  Variable Name:<br>
-                  <input id="varName" class="round" type="text">
+               <div>
+                  <div style="float: left; width: 30%;"><br><br>
+                     Store In:<br>
+                     <select id="storage" class="round" onchange="glob.variableChange(this, 'varNameContainer')">
+                     ${data.variables[1]}
+                     </select>
+                  </div>
+                  <div id="varNameContainer" style="display: ; float: right; width: 60%;"><br><br>
+                     Variable Name:<br>
+                     <input id="varName" class="round" type="text">
+                  </div>
                </div>
             </div>
          </div>`

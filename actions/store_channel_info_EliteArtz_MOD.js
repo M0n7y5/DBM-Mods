@@ -24,9 +24,30 @@ section: "Channel Control",
 
 subtitle: function(data) {
 	const channels = ['Same Channel', 'Mentioned Channel', '1st Server Channel', 'Temp Variable', 'Server Variable', 'Global Variable'];
-	const info = ['Channel Creation Date', 'On which Server is Channel?', 'Channel Is Deleteable?'];
+	const info = ['Channel Creation Date', 'On which Server is Channel?', 'Channel Is Deleteable?', 'Channel Category'];
 	return `${channels[parseInt(data.channel)]} - ${info[parseInt(data.info)]}`;
 },
+
+//---------------------------------------------------------------------
+	 // DBM Mods Manager Variables (Optional but nice to have!)
+	 //
+	 // These are variables that DBM Mods Manager uses to show information
+	 // about the mods for people to see in the list.
+	 //---------------------------------------------------------------------
+
+	 // Who made the mod (If not set, defaults to "DBM Mods")
+	 author: "EliteArtz",
+
+	 // The version of the mod (Defaults to 1.0.0)
+	 version: "1.8.3",
+
+	 // A short description to show on the mod line for this mod (Must be on a single line)
+	 short_description: "Stores Channels Information",
+
+	 // If it depends on any other mods by name, ex: WrexMODS if the mod uses something from WrexMods
+
+
+	 //---------------------------------------------------------------------
 
 //---------------------------------------------------------------------
 // Action Storage Function
@@ -48,6 +69,9 @@ variableStorage: function(data, varType) {
 			break;
 		case 2:
 			dataType = "Boolean";
+			break;
+		case 3:
+			dataType = "Category";
 			break;
 	}
 	return ([data.varName2, dataType]);
@@ -84,7 +108,7 @@ html: function(isEvent, data) {
 	<div>
 		<p>
 			<u>Mod Info:</u><br>
-			Created by EliteArtz!
+			Created by EliteArtz and Lasse!
 		</p>
 	</div><br>
 <div>
@@ -106,6 +130,7 @@ html: function(isEvent, data) {
 			<option value="0" selected>Channel Creation Date</option>
 			<option value="1">On which Server is Channel?</option>
 			<option value="2">Channel Is Deleteable?</option>
+			<option value="3">Channel Category</option>
 		</select>
 	</div>
 </div><br>
@@ -165,6 +190,9 @@ action: function(cache) {
 			break;
 		case 2:
 			result = targetChannel.deletable;
+			break;
+		case 3:
+			result = targetChannel.parent;
 			break;
 		default:
 			break;

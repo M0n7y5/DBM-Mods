@@ -29,6 +29,27 @@ module.exports = {
 	section: "JSON Things",
 
 	//---------------------------------------------------------------------
+		 // DBM Mods Manager Variables (Optional but nice to have!)
+		 //
+		 // These are variables that DBM Mods Manager uses to show information
+		 // about the mods for people to see in the list.
+		 //---------------------------------------------------------------------
+
+		 // Who made the mod (If not set, defaults to "DBM Mods")
+		 author: "General Wrex",
+
+		 // The version of the mod (Defaults to 1.0.0)
+		 version: "1.8.2",
+
+		 // A short description to show on the mod line for this mod (Must be on a single line)
+		 short_description: "INSERT DESCRIPTION HERE",
+
+		 // If it depends on any other mods by name, ex: WrexMODS if the mod uses something from WrexMods
+		 depends_on_mods: ["WrexMODS"],
+
+		 //---------------------------------------------------------------------
+
+	//---------------------------------------------------------------------
 	// Action Subtitle
 	//
 	// This function generates the subtitle displayed next to the name.
@@ -83,39 +104,41 @@ module.exports = {
 
 	html: function(isEvent, data) {
 		return `
+		<div id ="wrexdiv" style="width: 550px; height: 350px; overflow-y: scroll;">
 		<div>
-			<p>
-				<u>Mod Info:</u><br>
-				Created by General Wrex!
-			</p>
-		</div><br>
-	<div>
-	<div style="float: left; width: 75%;">
-	<div>
-		End Behavior:<br>
-		<select id="behavior" class="round">
-			<option value="0" selected>Call Next Action Automatically</option>
-			<option value="1">Do Not Call Next Action</option>
-		</select>
-	<div><br><br><br>
-		Stored JSON Variable Name: <br>
-		<input id="jsonObjectVarName" class="round"  style="width: 90%; type="text";><br>
-	</div>
-	</div><br>
-		JSON Path: (supports the usage of <a href="http://goessner.net/articles/JsonPath/index.html#e2" target="_blank">JSON Path (Regex)</a>))<br>
-		<input id="path" class="round"; style="width: 75%; type="text";><br>
-	<div><br><br>
-	<div style="float: left; width: 35%;">
-		Store In:<br>
-		<select id="storage" class="round" onchange="glob.variableChange(this, 'varNameContainer')">
-			${data.variables[0]}
-		</select>
-	</div>
-	<div id="varNameContainer" style="display: ; float: right; width: 60%;">
-		Variable Name:<br>
-		<input id="varName" class="round" type="text">
-	</div>
-	</div>`
+					<p>
+						<u>Mod Info:</u><br>
+						Created by General Wrex!
+					</p>
+				</div>
+			<div>
+			<div style="float: left; width: 75%;">
+			<div>
+				End Behavior:<br>
+				<select id="behavior" class="round">
+					<option value="0" selected>Call Next Action Automatically</option>
+					<option value="1">Do Not Call Next Action</option>
+				</select>
+			<div><br><br>
+				Stored JSON Variable Name: <br>
+				<input id="jsonObjectVarName" class="round"  style="width: 90%;" type="text"><br>
+			</div>
+			</div><br>
+				JSON Path: (supports the usage of <a href="http://goessner.net/articles/JsonPath/index.html#e2" target="_blank">JSON Path (Regex)</a>))<br>
+				<input id="path" class="round"; style="width: 75%;" type="text"><br>
+			<div><br>
+			<div style="float: left; width: 35%;">
+				Store In:<br>
+				<select id="storage" class="round" onchange="glob.variableChange(this, 'varNameContainer')">
+					${data.variables[0]}
+				</select>
+			</div>
+			<div id="varNameContainer" style="display: ; float: right; width: 60%;">
+				Variable Name:<br>
+				<input id="varName" class="round" type="text">
+			</div>
+			</div>
+		</div>`
 	},
 
 	//---------------------------------------------------------------------
@@ -141,8 +164,7 @@ module.exports = {
 
 	action: function(cache) {
 
-		var WrexMODS = require("../js/WrexMods.js");
-		WrexMODS.DBM = this.getDBM();
+		var WrexMODS = this.getWrexMods();
 
 		const data = cache.actions[cache.index];
 		let result;
